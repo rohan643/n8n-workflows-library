@@ -1,0 +1,147 @@
+{
+  "name": "Email Sequence \u2014 CRM Stage Trigger",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "HubSpot Trigger",
+      "type": "n8n-nodes-base.hubspotTrigger",
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "2",
+      "name": "Get Contact",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "3",
+      "name": "GPT-4o Personalize",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "4",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        800,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "5",
+      "name": "Wait 2 Days",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1000,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "6",
+      "name": "Send Follow-up",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1200,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "7",
+      "name": "Update Stage",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [
+        1400,
+        300
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "HubSpot Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contact": {
+      "main": [
+        [
+          {
+            "node": "GPT-4o Personalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4o Personalize": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Wait 2 Days",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2 Days": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-up": {
+      "main": [
+        [
+          {
+            "node": "Update Stage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d4e5f6a7-b8c9-0123-def0-456789012345"
+}
