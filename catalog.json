@@ -1,0 +1,42 @@
+{
+  "version": "2.1.0",
+  "total_workflows": 54,
+  "categories": {
+    "email_communication": {
+      "count": 12,
+      "workflows": [
+        "email-sequence-crm",
+        "slack-digest",
+        "cold-email-reply-handler",
+        "invoice-reminder-sequence"
+      ]
+    },
+    "lead_generation": {
+      "count": 11,
+      "workflows": [
+        "lead-scoring-engine",
+        "linkedin-to-crm",
+        "webinar-to-pipeline"
+      ]
+    },
+    "operations": {
+      "count": 15,
+      "workflows": [
+        "client-onboarding-full",
+        "proposal-generator",
+        "monthly-report-automation"
+      ]
+    },
+    "ai_powered": {
+      "count": 16,
+      "workflows": [
+        "ai-content-repurposer",
+        "ai-support-triage",
+        "ai-meeting-notes",
+        "competitor-monitor"
+      ]
+    }
+  },
+  "n8n_version_tested": "1.x",
+  "last_updated": "2026-05-07"
+}
