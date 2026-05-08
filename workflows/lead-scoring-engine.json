@@ -1,0 +1,126 @@
+{
+  "name": "Lead Scoring Engine \u2014 GPT-4o ICP Scoring",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "2",
+      "name": "Enrich via Clearbit",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "3",
+      "name": "Score with GPT-4o",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "4",
+      "name": "Route by Score",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        800,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "5",
+      "name": "Update Airtable HIGH",
+      "type": "n8n-nodes-base.airtable",
+      "position": [
+        1000,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "6",
+      "name": "Update Airtable LOW",
+      "type": "n8n-nodes-base.airtable",
+      "position": [
+        1200,
+        300
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Enrich via Clearbit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enrich via Clearbit": {
+      "main": [
+        [
+          {
+            "node": "Score with GPT-4o",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score with GPT-4o": {
+      "main": [
+        [
+          {
+            "node": "Route by Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Score": {
+      "main": [
+        [
+          {
+            "node": "Update Airtable HIGH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Airtable HIGH": {
+      "main": [
+        [
+          {
+            "node": "Update Airtable LOW",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e5f6a7b8-c9d0-1234-ef01-567890123456"
+}
